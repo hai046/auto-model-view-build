@@ -1,6 +1,6 @@
-package com.xlhy.saas.cloud.builder;
+package com.hai046.builder;
 
-import com.xlhy.saas.cloud.builder.annotation.EnableView;
+import com.hai046.builder.annotation.EnableView;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;

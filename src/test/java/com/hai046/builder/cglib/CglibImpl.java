@@ -1,4 +1,4 @@
-package com.xlhy.saas.cloud.builder.cglib;
+package com.hai046.builder.cglib;
 
 /**
  * @author denghaizhu

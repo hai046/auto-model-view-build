@@ -1,4 +1,4 @@
-package com.xlhy.saas.cloud.builder.annotation;
+package com.hai046.builder.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

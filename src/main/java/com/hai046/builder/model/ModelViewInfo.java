@@ -1,4 +1,4 @@
-package com.xlhy.saas.cloud.builder.model;
+package com.hai046.builder.model;
 
 import org.apache.commons.lang3.StringUtils;
 

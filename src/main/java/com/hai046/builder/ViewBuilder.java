@@ -1,9 +1,9 @@
-package com.xlhy.saas.cloud.builder;
+package com.hai046.builder;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.xlhy.saas.cloud.builder.configuration.ViewBuilderFactoryBean;
-import com.xlhy.saas.cloud.builder.model.MethodInfo;
+import com.hai046.builder.configuration.ViewBuilderFactoryBean;
+import com.hai046.builder.model.MethodInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

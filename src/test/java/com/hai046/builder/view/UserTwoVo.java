@@ -1,10 +1,10 @@
-package com.xlhy.saas.cloud.builder.view;
+package com.hai046.builder.view;
 
-import com.xlhy.saas.cloud.builder.annotation.AutoModel;
-import com.xlhy.saas.cloud.builder.annotation.View;
-import com.xlhy.saas.cloud.builder.annotation.ViewType;
-import com.xlhy.saas.cloud.builder.model.ImageDo;
-import com.xlhy.saas.cloud.builder.model.UserDo;
+import com.hai046.builder.annotation.AutoModel;
+import com.hai046.builder.annotation.View;
+import com.hai046.builder.annotation.ViewType;
+import com.hai046.builder.model.ImageDo;
+import com.hai046.builder.model.UserDo;
 
 /**
  * @author denghaizhu

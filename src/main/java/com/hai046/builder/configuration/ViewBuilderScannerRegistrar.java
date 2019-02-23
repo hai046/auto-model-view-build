@@ -1,8 +1,8 @@
-package com.xlhy.saas.cloud.builder.configuration;
+package com.hai046.builder.configuration;
 
-import com.xlhy.saas.cloud.builder.annotation.EnableView;
-import com.xlhy.saas.cloud.builder.annotation.View;
-import com.xlhy.saas.cloud.builder.model.ModelViewInfo;
+import com.hai046.builder.annotation.EnableView;
+import com.hai046.builder.annotation.View;
+import com.hai046.builder.model.ModelViewInfo;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;

@@ -1,9 +1,9 @@
-package com.xlhy.saas.cloud.builder;
+package com.hai046.builder;
 
-import com.xlhy.saas.cloud.builder.model.ImageDo;
-import com.xlhy.saas.cloud.builder.model.UserDo;
-import com.xlhy.saas.cloud.builder.view.UserTwoVo;
-import com.xlhy.saas.cloud.builder.view.UserVo;
+import com.hai046.builder.model.ImageDo;
+import com.hai046.builder.model.UserDo;
+import com.hai046.builder.view.UserTwoVo;
+import com.hai046.builder.view.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

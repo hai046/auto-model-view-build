@@ -1,6 +1,6 @@
-package com.xlhy.saas.cloud.builder.annotation;
+package com.hai046.builder.annotation;
 
-import com.xlhy.saas.cloud.builder.configuration.ViewBuilderScannerRegistrar;
+import com.hai046.builder.configuration.ViewBuilderScannerRegistrar;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

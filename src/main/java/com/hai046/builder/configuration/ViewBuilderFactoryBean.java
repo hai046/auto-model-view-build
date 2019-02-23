@@ -1,10 +1,10 @@
-package com.xlhy.saas.cloud.builder.configuration;
+package com.hai046.builder.configuration;
 
-import com.xlhy.saas.cloud.builder.annotation.AutoModel;
-import com.xlhy.saas.cloud.builder.annotation.View;
-import com.xlhy.saas.cloud.builder.annotation.ViewType;
-import com.xlhy.saas.cloud.builder.model.MethodInfo;
-import com.xlhy.saas.cloud.builder.model.ModelViewInfo;
+import com.hai046.builder.annotation.AutoModel;
+import com.hai046.builder.model.MethodInfo;
+import com.hai046.builder.model.ModelViewInfo;
+import com.hai046.builder.annotation.View;
+import com.hai046.builder.annotation.ViewType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
