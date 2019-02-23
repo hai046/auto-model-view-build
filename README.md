@@ -3,7 +3,7 @@
 以前一直使用使用天船老师的 [model-view-builder](https://github.com/PhantomThief/model-view-builder)来解决model到view树状渲染
 也学到了很多
 
-当我把这么好用的东西想推广给其他同事使用时候，发现他们上手太慢，不愿意使用，故一直想通过注解直接映射对应关系来解决，想在本项目解决
+当我把这么好用的东西想推广给其他同事使用时候，大家反馈上手太难太慢，不愿意使用，故一直想通过注解直接映射对应关系来解决，想在本项目解决
 
 
 本项目面是第一版本
@@ -67,7 +67,7 @@ public class UserVo {
 ```
 
 渲染
-```
+```java
 
     @Autowired
     private ViewBuilder viewBuilder;
@@ -90,3 +90,5 @@ public class UserVo {
     }
 
 ```
+
+
