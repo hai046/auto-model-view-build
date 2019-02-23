@@ -41,12 +41,16 @@ public class ViewBuilder {
      * @param <V>
      * @return
      */
-    public <K, V> Object build(Collection<K> models, Class<V> view) {
+    public <K, V> List<V> build(Collection<K> models, Class<V> view) {
+        if (models == null) {
+            logger.info(view.getName() + "'s build model is null skip ");
+            return null;
+        }
         final List<MethodInfo> methodInfos = viewBuilderFactoryBean.getMethodInfo(view);
         if (CollectionUtils.isEmpty(methodInfos)) {
             throw new RuntimeException(view.getName() + " not mapper ");
         }
-        final Constructor<?> constructor = viewBuilderFactoryBean.getConstructor(view);
+        final Constructor<V> constructor = viewBuilderFactoryBean.getConstructor(view);
         Multimap<Class, Object> idsCollectionsMap = HashMultimap.create();
         //聚合id
         models.forEach(m -> {
@@ -86,7 +90,7 @@ public class ViewBuilder {
                 return null;
             }
             try {
-                final Object o = constructor.newInstance();
+                final V o = constructor.newInstance();
                 for (MethodInfo methodInfo : methodInfos) {
                     final Function idFunction = methodInfo.getFunction();
                     if (idFunction == null) {
@@ -106,12 +110,8 @@ public class ViewBuilder {
 
                 }
                 return o;
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                logger.warn(e.getMessage(), e);
             }
             return null;
         }).filter(o -> !Objects.isNull(o)).collect(Collectors.toList());

@@ -27,7 +27,7 @@ public class ViewBuilderFactoryBean {
     private Set<ModelViewInfo> modelViewInfos;
 
     private Map<Class, List<MethodInfo>> viewMapperMap = new HashMap<>();
-    private Map<Class, Constructor<?>> classConstructorHashMap = new HashMap<>();
+    private Map<Class, Constructor> classConstructorHashMap = new HashMap<>();
 
     public Set<ModelViewInfo> getModelViewInfos() {
         return modelViewInfos;
@@ -110,7 +110,7 @@ public class ViewBuilderFactoryBean {
     }
 
 
-    public Constructor<?> getConstructor(Class<?> view) {
+    public <V> Constructor<V> getConstructor(Class<V> view) {
         return classConstructorHashMap.get(view);
     }
 }
