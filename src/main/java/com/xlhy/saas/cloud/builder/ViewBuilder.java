@@ -42,7 +42,6 @@ public class ViewBuilder {
      * @return
      */
     public <K, V> Object build(Collection<K> models, Class<V> view) {
-
         final List<MethodInfo> methodInfos = viewBuilderFactoryBean.getMethodInfo(view);
         if (CollectionUtils.isEmpty(methodInfos)) {
             throw new RuntimeException(view.getName() + " not mapper ");
@@ -62,12 +61,11 @@ public class ViewBuilder {
                     logger.debug("not mapping {}", methodInfo.getReferenceType());
                     continue;
                 }
-
                 idsCollectionsMap.put(methodInfo.getReferenceType(), id);
             }
         });
 
-        //批量 id->model
+        // id->model
         final Map<Class, Map<?, ?>> idsMapResult = idsCollectionsMap.keySet()
                 .stream()
                 .collect(Collectors.toMap(k -> k, k -> {
@@ -80,15 +78,13 @@ public class ViewBuilder {
                     return mapFunction.apply(ids);
                 }));
 
-        //end 聚合
 
-        //开始渲染
+        //start renderer
         return models.stream().map(m -> {
             if (m == null) {
                 logger.warn("view builder {}  model is null, skip it !", view);
                 return null;
             }
-
             try {
                 final Object o = constructor.newInstance();
                 for (MethodInfo methodInfo : methodInfos) {
@@ -119,8 +115,6 @@ public class ViewBuilder {
             }
             return null;
         }).filter(o -> !Objects.isNull(o)).collect(Collectors.toList());
-
-
     }
 
 
