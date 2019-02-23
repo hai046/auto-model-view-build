@@ -1,19 +1,19 @@
 package com.xlhy.saas.cloud.builder;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import com.xlhy.saas.cloud.builder.configuration.ViewBuilderFactoryBean;
-import com.xlhy.saas.cloud.builder.configuration.model.MethodInfo;
+import com.xlhy.saas.cloud.builder.model.MethodInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -25,16 +25,64 @@ import java.util.stream.Collectors;
 public class ViewBuilder {
 
     private static Logger logger = LoggerFactory.getLogger(ViewBuilder.class);
+
     @Autowired
     private ViewBuilderFactoryBean viewBuilderFactoryBean;
 
     private Map<Class<?>, Function<?, ?>> modelExtractors = new HashMap<>();
 
 
+    /**
+     * 把K模型的类型渲染到V
+     *
+     * @param models
+     * @param view
+     * @param <K>
+     * @param <V>
+     * @return
+     */
     public <K, V> Object build(Collection<K> models, Class<V> view) {
 
-        final List<MethodInfo> methodInfos = viewBuilderFactoryBean.mapperAndReturnMethodInfo(view);
+        final List<MethodInfo> methodInfos = viewBuilderFactoryBean.getMethodInfo(view);
+        if (CollectionUtils.isEmpty(methodInfos)) {
+            throw new RuntimeException(view.getName() + " not mapper ");
+        }
         final Constructor<?> constructor = viewBuilderFactoryBean.getConstructor(view);
+        Multimap<Class, Object> idsCollectionsMap = HashMultimap.create();
+        //聚合id
+        models.forEach(m -> {
+            for (MethodInfo methodInfo : methodInfos) {
+                final Function idFunction = methodInfo.getFunction();
+                if (idFunction == null) {
+                    continue;
+                }
+                final Object id = idFunction.apply(m);
+                final Function function = modelExtractors.get(methodInfo.getReferenceType());
+                if (function == null) {
+                    logger.debug("not mapping {}", methodInfo.getReferenceType());
+                    continue;
+                }
+
+                idsCollectionsMap.put(methodInfo.getReferenceType(), id);
+            }
+        });
+
+        //批量 id->model
+        final Map<Class, Map<?, ?>> idsMapResult = idsCollectionsMap.keySet()
+                .stream()
+                .collect(Collectors.toMap(k -> k, k -> {
+                    final Collection<Object> ids = idsCollectionsMap.get(k);
+                    final Function<Collection<?>, Map<?, ?>> mapFunction = (Function<Collection<?>, Map<?, ?>>) modelExtractors.get(k);
+                    if (mapFunction == null) {
+                        logger.warn("not model={} view builder", k);
+                        return Collections.emptyMap();
+                    }
+                    return mapFunction.apply(ids);
+                }));
+
+        //end 聚合
+
+        //开始渲染
         return models.stream().map(m -> {
             if (m == null) {
                 logger.warn("view builder {}  model is null, skip it !", view);
@@ -52,15 +100,14 @@ public class ViewBuilder {
                         }
                         continue;
                     }
+
                     final Object id = idFunction.apply(m);
-                    final Function function = modelExtractors.get(methodInfo.getReferenceType());
-                    if (function == null) {
-                        logger.debug("not mapping {}", methodInfo.getReferenceType());
-                        continue;
+                    final Map<?, ?> map = idsMapResult.get(methodInfo.getReferenceType());
+                    if (map != null) {
+                        final Field field = methodInfo.getField();
+                        field.set(o, map.get(id));
                     }
-                    final Object idModelView = function.apply(id);
-                    final Field field = methodInfo.getField();
-                    field.set(o, idModelView);
+
                 }
                 return o;
             } catch (InstantiationException e) {
@@ -71,13 +118,21 @@ public class ViewBuilder {
                 e.printStackTrace();
             }
             return null;
-        }).collect(Collectors.toList());
+        }).filter(o -> !Objects.isNull(o)).collect(Collectors.toList());
 
 
     }
 
 
-    public <K, V> void addModelData(Function<K, V> function, Class<V> clazz) {
+    /**
+     * 添加model对应id转换关系，也就是通过对应model的id获取model列表
+     *
+     * @param function
+     * @param clazz
+     * @param <K>
+     * @param <V>
+     */
+    public <K, V> void addId2ModelMapper(Function<Collection<K>, Map<K, V>> function, Class<V> clazz) {
         modelExtractors.put(clazz, function);
     }
 

@@ -8,6 +8,7 @@ import java.lang.annotation.*;
 /**
  * @author denghaizhu
  * @date 2019-02-22
+ * 开启view渲染的总开关
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

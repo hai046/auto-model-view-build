@@ -26,14 +26,12 @@ public class UserVo {
     private UserDo userDo;
 
     public String getName() {
-
-        return "name";
+        return userDo.getName();
     }
 
     public String getId() {
         return "uuid=" + userDo.getId();
     }
-
 
     public SchoolDo getSchoolDo() {
         return schoolDo;
@@ -43,7 +41,4 @@ public class UserVo {
         return imageDo;
     }
 
-    public UserDo getUserDo() {
-        return userDo;
-    }
 }

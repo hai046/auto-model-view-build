@@ -1,4 +1,4 @@
-package com.xlhy.saas.cloud.builder.configuration.model;
+package com.xlhy.saas.cloud.builder.model;
 
 import java.lang.reflect.Field;
 import java.util.function.Function;
@@ -7,10 +7,10 @@ import java.util.function.Function;
  * @author denghaizhu
  * @date 2019-02-22
  */
-public class MethodInfo <K,V> {
+public final class MethodInfo<K, V> {
     private java.lang.reflect.Field Field;
     private Class<?> referenceType;
-    private Function<K,V> function;
+    private Function<K, V> function;
 
     public Field getField() {
         return Field;
@@ -20,11 +20,11 @@ public class MethodInfo <K,V> {
         this.Field = field;
     }
 
-    public  Function<?,?> getFunction() {
+    public Function<?, ?> getFunction() {
         return function;
     }
 
-    public void setFunction(Function<K,V> function) {
+    public void setFunction(Function<K, V> function) {
         this.function = function;
     }
 

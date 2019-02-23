@@ -11,6 +11,11 @@ import java.lang.annotation.*;
 @Documented
 public @interface View {
 
+    /**
+     * 需要渲染的model
+     *
+     * @return
+     */
     Class<?> model();
 
     /**

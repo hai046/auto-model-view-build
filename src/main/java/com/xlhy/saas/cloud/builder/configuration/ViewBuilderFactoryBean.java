@@ -1,10 +1,10 @@
 package com.xlhy.saas.cloud.builder.configuration;
 
 import com.xlhy.saas.cloud.builder.annotation.AutoModel;
-import com.xlhy.saas.cloud.builder.configuration.model.MethodInfo;
-import com.xlhy.saas.cloud.builder.configuration.model.ModelViewInfo;
 import com.xlhy.saas.cloud.builder.annotation.View;
 import com.xlhy.saas.cloud.builder.annotation.ViewType;
+import com.xlhy.saas.cloud.builder.model.MethodInfo;
+import com.xlhy.saas.cloud.builder.model.ModelViewInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -76,7 +76,7 @@ public class ViewBuilderFactoryBean {
 
 
                 final Field viewModel = classFieldMap.get(model);
-                if(viewModel!=null) {
+                if (viewModel != null) {
                     MethodInfo methodInfo = new MethodInfo();
                     methodInfo.setField(viewModel);
                     methodInfo.setReferenceType(aViewClass);
@@ -104,9 +104,8 @@ public class ViewBuilderFactoryBean {
         }
     }
 
-    public List<MethodInfo> mapperAndReturnMethodInfo(Class<?> view) {
-        final List<MethodInfo> list = viewMapperMap.get(view);
-        return list;
+    public List<MethodInfo> getMethodInfo(Class<?> view) {
+        return viewMapperMap.get(view);
 
     }
 

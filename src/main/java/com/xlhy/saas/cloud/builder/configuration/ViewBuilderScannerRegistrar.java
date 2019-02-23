@@ -2,7 +2,7 @@ package com.xlhy.saas.cloud.builder.configuration;
 
 import com.xlhy.saas.cloud.builder.annotation.EnableView;
 import com.xlhy.saas.cloud.builder.annotation.View;
-import com.xlhy.saas.cloud.builder.configuration.model.ModelViewInfo;
+import com.xlhy.saas.cloud.builder.model.ModelViewInfo;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
@@ -84,7 +84,6 @@ public class ViewBuilderScannerRegistrar implements ImportBeanDefinitionRegistra
                 .genericBeanDefinition(ViewBuilderFactoryBean.class);
 
         definition.addPropertyValue("modelViewInfos", modelViewInfos);
-//        definition.addConstructorArgValue(modelViewInfos);
         definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 
         AbstractBeanDefinition beanDefinition = definition.getBeanDefinition();

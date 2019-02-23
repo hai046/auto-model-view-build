@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @date 2019-02-22
  */
 
-@EnableView(viewBuilderPackages = "com.xlhy.saas.cloud")
+//@EnableView(viewBuilderPackages = "com.xlhy.saas.cloud")
 @SpringBootApplication
 @ComponentScan("com")
 public class TestApplication {

@@ -1,12 +1,12 @@
 package com.xlhy.saas.cloud.builder;
 
-import com.xlhy.saas.cloud.builder.annotation.ViewResult;
 import com.xlhy.saas.cloud.builder.model.ImageDo;
 import com.xlhy.saas.cloud.builder.model.UserDo;
 import com.xlhy.saas.cloud.builder.view.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -26,18 +26,18 @@ public class TestController {
     private ViewBuilder viewBuilder;
 
     @GetMapping("/t1")
-    @ViewResult
-    public Object test() {
+    public Object test(@RequestParam(value = "count", defaultValue = "10") int count) {
 
-        viewBuilder.<Long, ImageDo>addModelData(id -> {
+        viewBuilder.<Long, ImageDo>addId2ModelMapper(ids -> ids.stream().collect(Collectors.toMap(k -> k, v -> {
             ImageDo imageDo = new ImageDo();
             imageDo.setFormat("jpg");
-            imageDo.setId(id);
+            imageDo.setId(v);
             imageDo.setUrl("http://baidu.com");
             return imageDo;
-        }, ImageDo.class);
+        })), ImageDo.class);
 
-        final List<UserDo> userDos = IntStream.rangeClosed(1, 2).boxed().map(id -> {
+
+        final List<UserDo> userDos = IntStream.rangeClosed(1, count).boxed().map(id -> {
             final UserDo userDo = new UserDo();
             userDo.setId(id);
             userDo.setName("userName:hai046");
@@ -45,11 +45,10 @@ public class TestController {
             return userDo;
         }).collect(Collectors.toList());
 
-        Map<String, Object> item = new HashMap<>();
+        Map<Object, Object> item = new HashMap<>();
         long s = System.currentTimeMillis();
         final Object build = viewBuilder.build(userDos, UserVo.class);
-        item.put("item", build);
-        item.put("cost", (System.currentTimeMillis() - s));
+        item.put((System.currentTimeMillis() - s), build);
         return item;
     }
 

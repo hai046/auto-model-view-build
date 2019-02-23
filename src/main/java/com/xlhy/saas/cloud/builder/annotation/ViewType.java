@@ -14,8 +14,18 @@ import java.lang.annotation.Target;
 @Documented
 public @interface ViewType {
 
+    /**
+     * 自动id
+     *
+     * @return
+     */
     String id();
 
+    /**
+     * id对应的model 映射类
+     *
+     * @return
+     */
     Class<?> referenceType();
 
 

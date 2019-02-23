@@ -1,4 +1,4 @@
-package com.xlhy.saas.cloud.builder.configuration.model;
+package com.xlhy.saas.cloud.builder.model;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author denghaizhu
  * @date 2019-02-22
  */
-public class ModelViewInfo {
+public final class ModelViewInfo {
     private final String className;
     private final Class<?>[] models;
 
