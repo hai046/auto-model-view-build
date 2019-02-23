@@ -91,6 +91,7 @@ public class UserVo {
     }
 
 ```
-
+### 最新使用方法参见
+`com.hai046.builder.TestController`
 
 
