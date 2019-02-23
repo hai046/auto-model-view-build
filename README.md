@@ -90,6 +90,48 @@ public class UserVo {
     }
 
 ```
+结果
+```json
+{
+  "item": [
+    {
+      "schoolDo": null,
+      "imageDo": {
+        "id": 111,
+        "url": "http://baidu.com",
+        "format": "jpg"
+      },
+      "userDo": {
+        "id": 1,
+        "schoolId": null,
+        "name": "userName:hai046",
+        "createTime": null,
+        "imageId": 111
+      },
+      "name": "name",
+      "id": "uuid=1"
+    },
+    {
+      "schoolDo": null,
+      "imageDo": {
+        "id": 111,
+        "url": "http://baidu.com",
+        "format": "jpg"
+      },
+      "userDo": {
+        "id": 2,
+        "schoolId": null,
+        "name": "userName:hai046",
+        "createTime": null,
+        "imageId": 111
+      },
+      "name": "name",
+      "id": "uuid=2"
+    }
+  ],
+  "cost": 1
+}
+```
 
 > 这里为基本逻辑，后续推广需要同事一起完成，就不对外open
 
