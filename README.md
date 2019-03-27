@@ -95,3 +95,11 @@ public class UserVo {
 `com.hai046.builder.TestController`
 
 
+### 依赖
+```xml
+<dependency>
+  <groupId>com.github.hai046</groupId>
+  <artifactId>auto-model-view-builder</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
