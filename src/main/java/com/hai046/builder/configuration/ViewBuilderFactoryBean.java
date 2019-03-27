@@ -1,10 +1,10 @@
 package com.hai046.builder.configuration;
 
 import com.hai046.builder.annotation.AutoModel;
-import com.hai046.builder.model.MethodInfo;
-import com.hai046.builder.model.ModelViewInfo;
 import com.hai046.builder.annotation.View;
 import com.hai046.builder.annotation.ViewType;
+import com.hai046.builder.model.MethodInfo;
+import com.hai046.builder.model.ModelViewInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.*;
 
 /**
  * @author denghaizhu
- * @date 2019-02-22
+ * date 2019/02/22
  */
 @Service
 public class ViewBuilderFactoryBean {

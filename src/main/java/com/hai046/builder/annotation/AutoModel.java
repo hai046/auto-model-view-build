@@ -3,9 +3,11 @@ package com.hai046.builder.annotation;
 import java.lang.annotation.*;
 
 /**
- * @author denghaizhu
- * @date 2019-02-22
+ * Created by haizhu on 2019-03-27
+ * <p></p>
  * 自动获取当前view里面的model对象
+ *
+ * @author haizhu12345@gmail.com
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

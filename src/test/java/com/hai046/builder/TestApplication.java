@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author denghaizhu
- * @date 2019-02-22
+ * * date 2019-02-22
  */
 
 @EnableView(viewBuilderPackages = "com.hai046")

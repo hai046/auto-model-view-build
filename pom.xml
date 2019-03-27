@@ -3,18 +3,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.xlhy.saas.cloud</groupId>
-    <artifactId>cloud-agent-model-view-builder</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
+    <name>Auto-model-view</name>
+    <description>Auto convert model to view</description>
+    <groupId>com.github.hai046</groupId>
+    <artifactId>auto-model-view-builder</artifactId>
+    <version>1.0.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.boot.version>1.5.15.RELEASE</spring.boot.version>
         <spring-cloud-start.version>1.4.5.RELEASE</spring-cloud-start.version>
         <java.version>1.8</java.version>
     </properties>
+    <url>https://github.com/hai046/auto-model-view-build</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
+    <scm>
+        <connection>scm:git:https://github.com/hai046/auto-model-view-build.git</connection>
+        <developerConnection>scm:git:https://github.com/hai046/auto-model-view-build.git</developerConnection>
+        <url>https://github.com/hai046/auto-model-view-build.git</url>
+    </scm>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -56,44 +69,32 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>http://192.168.10.1:8081/nexus/content/repositories/releases</url>
-        </repository>
 
+    <developers>
+        <developer>
+            <name>denghaizhu</name>
+            <email>haizhu12345@gmail.com</email>
+        </developer>
+    </developers>
+    <distributionManagement>
         <snapshotRepository>
-            <id>snapshots</id>
-            <url>http://192.168.10.1:8081/nexus/content/repositories/snapshots</url>
+            <id>sonatype</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>sonatype</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
     <build>
-        <extensions>
-            <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>1.5.0.Final</version>
-            </extension>
-        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>2.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <phase>verify</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
@@ -102,20 +103,44 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test*.java</include>
-                    </includes>
-                    <skipTests>true</skipTests>
-                </configuration>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!--mvn nexus-staging:release-->
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>sonatype</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>

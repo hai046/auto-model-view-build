@@ -13,7 +13,7 @@
 - [x] 减少上手门槛
 - [x] 提高开发效率
 - [x] 支持view自定义组合
-- [ ] 高效渲染[测试发现第一次慢，后面非常快，反射不慢]
+- [ ] 高效渲染[第一次较慢]
 
 
 例子参见`test`代码
@@ -26,7 +26,7 @@
 
 /**
  * @author denghaizhu
- * @date 2019-02-22
+ * * date 2019-02-22
  */
 @View(model = UserDo.class,
         fieldMapper = {@ViewType(id = "schoolId", referenceType = SchoolDo.class),

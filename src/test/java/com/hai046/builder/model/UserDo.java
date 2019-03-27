@@ -2,7 +2,7 @@ package com.hai046.builder.model;
 
 /**
  * @author denghaizhu
- * @date 2019-02-22
+ * * date 2019-02-22
  */
 public class UserDo {
     private Integer id;

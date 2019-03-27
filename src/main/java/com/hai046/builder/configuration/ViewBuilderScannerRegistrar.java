@@ -25,7 +25,7 @@ import java.util.Set;
 
 /**
  * @author denghaizhu
- * @date 2019-02-22
+ * date 2019-02-22
  * 扫描view builder 配置
  */
 public class ViewBuilderScannerRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoaderAware {

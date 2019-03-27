@@ -5,7 +5,7 @@ import java.util.function.Function;
 
 /**
  * @author denghaizhu
- * @date 2019-02-22
+ * * date 2019-02-22
  */
 public final class MethodInfo<K, V> {
     private java.lang.reflect.Field Field;

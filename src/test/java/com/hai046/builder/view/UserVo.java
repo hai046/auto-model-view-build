@@ -9,7 +9,7 @@ import com.hai046.builder.model.UserDo;
 
 /**
  * @author denghaizhu
- * @date 2019-02-22
+ * * date 2019-02-22
  */
 @View(model = UserDo.class,
         fieldMapper = {@ViewType(id = "schoolId", referenceType = SchoolDo.class),

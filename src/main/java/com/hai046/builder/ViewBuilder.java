@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 /**
  * @author denghaizhu
- * @date 2019-02-22
+ * * date 2019-02-22
  */
 @Service
 public class ViewBuilder {
@@ -31,14 +31,13 @@ public class ViewBuilder {
 
     private Map<Class<?>, Function<?, ?>> modelExtractors = new HashMap<>();
 
-
     /**
      * 把K模型的类型渲染到V
      *
-     * @param models
-     * @param view
-     * @param <K>
-     * @param <V>
+     * @param models need build models
+     * @param view   target view
+     * @param <K>    model class
+     * @param <V>    view class
      * @return
      */
     public <K, V> List<V> build(Collection<K> models, Class<V> view) {
@@ -121,10 +120,10 @@ public class ViewBuilder {
     /**
      * 添加model对应id转换关系，也就是通过对应model的id获取model列表
      *
-     * @param function
-     * @param clazz
-     * @param <K>
-     * @param <V>
+     * @param function logic function
+     * @param clazz    model
+     * @param <K>      model class
+     * @param <V>      view class
      */
     public <K, V> void addId2ModelMapper(Function<Collection<K>, Map<K, V>> function, Class<V> clazz) {
         modelExtractors.put(clazz, function);
