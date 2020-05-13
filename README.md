@@ -103,3 +103,4 @@ public class UserVo {
   <version>1.0.0</version>
 </dependency>
 ```
+后续会添加其他类型的支持
