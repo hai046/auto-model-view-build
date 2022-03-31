@@ -10,7 +10,7 @@
     <version>1.0.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.boot.version>1.5.15.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
         <spring-cloud-start.version>1.4.5.RELEASE</spring-cloud-start.version>
         <java.version>1.8</java.version>
     </properties>
